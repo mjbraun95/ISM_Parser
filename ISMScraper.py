@@ -121,50 +121,51 @@ def chooseSectorsAndIndustriesArrays( ISM_Soup ):
         thisIndustriesArray = NMI_IndustriesArray
     return thisSectorsArray, thisIndustriesArray
 
-def grabSortedPosNegRankLists( ISM_Soup, p_mb3_Array_Filtered, thisIndustriesArray ):
+def grabSortedPosNegRankLists( ISM_Soup, p_mb3_FilteredText, p_mb3_Array_Filtered, thisIndustriesArray ):
     debug_grabSortedPosNegRankLists = True
-    for p_mb3_FilteredIndex, p_mb3_FilteredText in enumerate( p_mb3_Array_Filtered ):
-        if debug_grabSortedPosNegRankLists == True:
-            print("\n{}".format(p_mb3_FilteredText))
-        industArray = [m.start() for m in re.finditer( "indust", str(p_mb3_FilteredText) )]
-        firstRankMin = industArray[0]
-        try:
-            secondRankMin = industArray[1]
-        except IndexError:
-            secondRankMin = -1
-        if debug_grabSortedPosNegRankLists == True:
-            print("firstRankMin: {}".format(firstRankMin))
-            print("secondRankMin: {}".format(secondRankMin))
-        positiveRankDictionary = {}
-        negativeRankDictionary = {}
-        subString1 = p_mb3_FilteredText[firstRankMin:secondRankMin]
-        
+    if debug_grabSortedPosNegRankLists == True:
+        print("\n{}".format(p_mb3_FilteredText))
+    industArray = [m.start() for m in re.finditer( "indust", str(p_mb3_FilteredText) )]
+    firstRankMin = industArray[0]
+    try:
+        secondRankMin = industArray[1]
+    except IndexError:
+        secondRankMin = -1
+    if debug_grabSortedPosNegRankLists == True:
+        print("firstRankMin: {}".format(firstRankMin))
+        print("secondRankMin: {}".format(secondRankMin))
+    positiveRankDictionary = {}
+    negativeRankDictionary = {}
+    subString1 = p_mb3_FilteredText[firstRankMin:secondRankMin]
+    
 
-        for thisIndustry in thisIndustriesArray:
-            if subString1.find(thisIndustry) != -1:
-                positiveRankDictionary[thisIndustry] = subString1.find( thisIndustry )
-                
-            subString2 = p_mb3_FilteredText[secondRankMin:]
-            if subString2.find(thisIndustry) != -1:
-                negativeRankDictionary[thisIndustry] = subString2.find( thisIndustry )
-                
-        sortedPositiveRankList = sorted( positiveRankDictionary.items(), key=lambda kv: kv[1])
-        sortedNegativeRankList = sorted( negativeRankDictionary.items(), key=lambda kv: kv[1])
-        if debug_grabSortedPosNegRankLists == True:
-            print("sortedPositiveRankList: {}".format( sortedPositiveRankList ) )
-            print("sortedNegativeRankList: {}".format( sortedNegativeRankList ) )
+    for thisIndustry in thisIndustriesArray:
+        if subString1.find(thisIndustry) != -1:
+            positiveRankDictionary[thisIndustry] = subString1.find( thisIndustry )
+            
+        subString2 = p_mb3_FilteredText[secondRankMin:]
+        if subString2.find(thisIndustry) != -1:
+            negativeRankDictionary[thisIndustry] = subString2.find( thisIndustry )
+            
+    sortedPositiveRankList = sorted( positiveRankDictionary.items(), key=lambda kv: kv[1])
+    sortedNegativeRankList = sorted( negativeRankDictionary.items(), key=lambda kv: kv[1])
+    if debug_grabSortedPosNegRankLists == True:
+        print("sortedPositiveRankList: {}".format( sortedPositiveRankList ) )
+        print("sortedNegativeRankList: {}".format( sortedNegativeRankList ) )
 
     return sortedPositiveRankList, sortedNegativeRankList
 
-def grabRankingListArray( p_mb3_Array_Filtered, thisSectorsArray, thisIndustriesArray, sortedPositiveRankList, sortedNegativeRankList ):
+def grabRankingListArray( ISM_Soup, p_mb3_Array_Filtered, thisSectorsArray, thisIndustriesArray ):
     debug_grabRankingListArray = True
-    ISM_PositiveRankingList = []
-    ISM_NegativeRankingList = []
-    ISM_NeutralRankingList = []
     ISM_PositiveRankingListArray = []
     ISM_NegativeRankingListArray = []
     ISM_NeutralRankingListArray = []
     for p_mb3_FilteredIndex, p_mb3_FilteredText in enumerate( p_mb3_Array_Filtered ):
+        ISM_PositiveRankingList = []
+        ISM_NegativeRankingList = []
+        ISM_NeutralRankingList = []
+        sortedPositiveRankList, sortedNegativeRankList = grabSortedPosNegRankLists( ISM_Soup, p_mb3_FilteredText, p_mb3_Array_Filtered, thisIndustriesArray )
+
 
         # ADD NEUTRAL INDUSTRIES TO ENTIRE ARRAY
         for thisIndustry in thisIndustriesArray:
@@ -178,8 +179,8 @@ def grabRankingListArray( p_mb3_Array_Filtered, thisSectorsArray, thisIndustries
             posStrR = quotes[1]
             posStr = str(positiveIndustry)[posStrL+1:posStrR]
 
-            if debug_grabRankingListArray == True:
-                print("posStr: {}".format( posStr ) )
+            # if debug_grabRankingListArray == True:
+            #     print("posStr: {}".format( posStr ) )
             ISM_PositiveRankingList.append( posStr )
 
             # Removes positives from neutral
@@ -193,8 +194,8 @@ def grabRankingListArray( p_mb3_Array_Filtered, thisSectorsArray, thisIndustries
             negStrR = quotes[1]
             negStr = str(negativeIndustry)[negStrL+1:negStrR]
 
-            if debug_grabRankingListArray == True:
-                print("negStr: {}".format( negStr ) )
+            # if debug_grabRankingListArray == True:
+            #     print("negStr: {}".format( negStr ) )
             ISM_NegativeRankingList.append( negStr )
 
             # Removes negatives from neutral
@@ -208,9 +209,9 @@ def grabRankingListArray( p_mb3_Array_Filtered, thisSectorsArray, thisIndustries
 
         if debug_grabRankingListArray == True:
             print("----")
-            print("ISM_PositiveRankingListArray[-1]: {}".format( ISM_PositiveRankingListArray[-1] ) )
-            print("ISM_NegativeRankingListArray[-1]: {}".format( ISM_NegativeRankingListArray[-1] ) )
-            print(" ISM_NeutralRankingListArray[-1]: {}".format( ISM_NeutralRankingListArray[-1] ) )
+            print("ISM_PositiveRankingListArray[{}]: {}".format( p_mb3_FilteredIndex, ISM_PositiveRankingListArray[p_mb3_FilteredIndex] ) )
+            print("ISM_NegativeRankingListArray[{}]: {}".format( p_mb3_FilteredIndex,  ISM_NegativeRankingListArray[p_mb3_FilteredIndex] ) )
+            print(" ISM_NeutralRankingListArray[{}]: {}".format( p_mb3_FilteredIndex, ISM_NeutralRankingListArray[p_mb3_FilteredIndex] ) )
             print("----")
 
         
@@ -248,9 +249,9 @@ def grabISMrankings(ISM_Soup):
 
     p_Array, p_mb3_Array_Unfiltered, p_mb3_Array_Filtered = filterRankingParagraphs( ISM_Soup )
 
-    sortedPositiveRankList, sortedNegativeRankList = grabSortedPosNegRankLists( ISM_Soup, p_mb3_Array_Filtered, thisIndustriesArray )
+    
 
-    finalRankDictionaryArray = grabRankingListArray( p_mb3_Array_Filtered, thisSectorsArray, thisIndustriesArray, sortedPositiveRankList, sortedNegativeRankList )
+    finalRankDictionaryArray = grabRankingListArray( ISM_Soup, p_mb3_Array_Filtered, thisSectorsArray, thisIndustriesArray )
     return finalRankDictionaryArray
 
 if __name__ == "__main__":

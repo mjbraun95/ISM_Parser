@@ -1,0 +1,26 @@
+#----PMI----#
+ISM_Page = requests.get("https://www.instituteforsupplymanagement.org/ISMReport/MfgROB.cfm?SSO=1") #July 2019
+ISM_Page = requests.get("https://www.instituteforsupplymanagement.org/news/NewsReleaseDetail.cfm?ItemNumber=31138") #June 2019
+ISM_Page = requests.get("https://www.instituteforsupplymanagement.org/about/MediaRoom/newsreleasedetail.cfm?ItemNumber=31135&SSO=1") #May 2019
+ISM_Page = requests.get("https://www.instituteforsupplymanagement.org/about/MediaRoom/newsreleasedetail.cfm?ItemNumber=31133&SSO=1") #April 2019
+ISM_Page = requests.get("https://www.instituteforsupplymanagement.org/about/MediaRoom/newsreleasedetail.cfm?ItemNumber=31128&SSO=1") #March 2019
+ISM_Page = requests.get("https://www.instituteforsupplymanagement.org/about/MediaRoom/newsreleasedetail.cfm?ItemNumber=31113&SSO=1") #February 2019
+ISM_Page = requests.get("https://www.instituteforsupplymanagement.org/about/MediaRoom/newsreleasedetail.cfm?ItemNumber=31101&SSO=1") #January 2019
+ISM_Page = requests.get("https://www.instituteforsupplymanagement.org/about/MediaRoom/newsreleasedetail.cfm?ItemNumber=31098&SSO=1") #December 2018
+ISM_Page = requests.get("https://www.instituteforsupplymanagement.org/about/MediaRoom/newsreleasedetail.cfm?ItemNumber=31086&SSO=1") #November 2018
+ISM_Page = requests.get("https://www.instituteforsupplymanagement.org/about/MediaRoom/newsreleasedetail.cfm?ItemNumber=31078&SSO=1") #October 2018
+ISM_Page = requests.get("https://www.instituteforsupplymanagement.org/about/MediaRoom/newsreleasedetail.cfm?ItemNumber=31076&SSO=1") #September 2018
+ISM_Page = requests.get("https://www.instituteforsupplymanagement.org/about/MediaRoom/newsreleasedetail.cfm?ItemNumber=31070&SSO=1") #August 2018
+#----NMI----#
+ISM_Page = requests.get("https://www.instituteforsupplymanagement.org/about/MediaRoom/newsreleasedetail.cfm?ItemNumber=31145&SSO=1") #July 2019
+ISM_Page = requests.get("https://www.instituteforsupplymanagement.org/about/MediaRoom/newsreleasedetail.cfm?ItemNumber=31144&SSO=1") #June 2019
+ISM_Page = requests.get("https://www.instituteforsupplymanagement.org/about/MediaRoom/newsreleasedetail.cfm?ItemNumber=31136&SSO=1") #May 2019
+ISM_Page = requests.get("https://www.instituteforsupplymanagement.org/about/MediaRoom/newsreleasedetail.cfm?ItemNumber=31134&SSO=1") #April 2019
+ISM_Page = requests.get("https://www.instituteforsupplymanagement.org/about/MediaRoom/newsreleasedetail.cfm?ItemNumber=31129&SSO=1") #March 2019
+ISM_Page = requests.get("https://www.instituteforsupplymanagement.org/about/MediaRoom/newsreleasedetail.cfm?ItemNumber=31115&SSO=1") #February 2019
+ISM_Page = requests.get("https://www.instituteforsupplymanagement.org/about/MediaRoom/newsreleasedetail.cfm?ItemNumber=31102&SSO=1") #January 2019
+ISM_Page = requests.get("https://www.instituteforsupplymanagement.org/about/MediaRoom/newsreleasedetail.cfm?ItemNumber=31099&SSO=1") #December 2018
+ISM_Page = requests.get("https://www.instituteforsupplymanagement.org/about/MediaRoom/newsreleasedetail.cfm?ItemNumber=31090&SSO=1") #November 2018
+ISM_Page = requests.get("https://www.instituteforsupplymanagement.org/about/MediaRoom/newsreleasedetail.cfm?ItemNumber=31080&SSO=1") #October 2018
+ISM_Page = requests.get("https://www.instituteforsupplymanagement.org/about/MediaRoom/newsreleasedetail.cfm?ItemNumber=31077&SSO=1") #September 2018
+ISM_Page = requests.get("https://www.instituteforsupplymanagement.org/about/MediaRoom/newsreleasedetail.cfm?ItemNumber=31074&SSO=1") #August 2018
